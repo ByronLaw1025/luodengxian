@@ -82,7 +82,6 @@
 </head>
 <body>
     <div class="header-container">
-<!--         <img src="./header.jpeg" alt="AI助手" class="header-image"> -->
         <h1>罗登贤AI</h1>
     </div>
     <div id="chat-container"></div>
@@ -125,7 +124,7 @@
             userInput.value = '';
 
             // 创建 AI 消息容器
-            const aiMessageDiv = addMessage('正在思考...', false);
+            const aiMessageDiv = addMessage('', false);
             aiMessageDiv.classList.add('typing');
 
             try {
@@ -134,13 +133,15 @@
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${API_KEY}`,
-                        'X-DashScope-SSE': 'disable'
+                        'X-DashScope-SSE': 'enable'
                     },
                     body: JSON.stringify({
                         input: {
                             prompt: message
                         },
-                        parameters: {},
+                        parameters: {
+                            incremental_output: true
+                        },
                         debug: {}
                     })
                 });
@@ -149,14 +150,34 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
-                const data = await response.json();
-                console.log('API响应:', data); // 添加日志
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let accumulatedText = '';
 
-                if (data.output && data.output.text) {
-                    aiMessageDiv.textContent = data.output.text;
-                    aiMessageDiv.classList.remove('typing');
-                    messages.push(data.output.text);
+                while (true) {
+                    const {value, done} = await reader.read();
+                    if (done) break;
+                    
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n');
+                    
+                    for (const line of lines) {
+                        if (line.startsWith('data:')) {
+                            try {
+                                const jsonData = JSON.parse(line.slice(5));
+                                if (jsonData.output && jsonData.output.text) {
+                                    accumulatedText += jsonData.output.text;
+                                    aiMessageDiv.textContent = accumulatedText;
+                                }
+                            } catch (e) {
+                                console.error('解析响应数据出错:', e);
+                            }
+                        }
+                    }
                 }
+
+                aiMessageDiv.classList.remove('typing');
+                messages.push(accumulatedText);
 
             } catch (error) {
                 console.error('API请求错误:', error);

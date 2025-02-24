@@ -8,6 +8,27 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #e6f3ff; /* 添加浅蓝色背景 */
+        }
+        
+        /* 修改标题容器样式，使用flex布局 */
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 20px; /* 添加间距 */
+        }
+        
+        /* 修改图片样式 */
+        .header-image {
+            max-width: 200px;
+            height: auto;
+            margin: 0; /* 移除上下边距 */
+        }
+        
+        h1 {
+            margin: 0; /* 移除标题边距 */
         }
         #chat-container {
             height: 500px;
@@ -15,6 +36,7 @@
             padding: 20px;
             overflow-y: auto;
             margin-bottom: 20px;
+            background-color: white; /* 添加白色背景 */
         }
         .message {
             margin-bottom: 15px;
@@ -59,7 +81,10 @@
     </style>
 </head>
 <body>
-    <h1>罗登贤AI</h1>
+    <div class="header-container">
+        <img src="./header.jpeg" alt="AI助手" class="header-image">
+        <h1>罗登贤AI</h1>
+    </div>
     <div id="chat-container"></div>
     <div id="input-container">
         <input type="text" id="user-input" placeholder="输入您的问题...">

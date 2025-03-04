@@ -4,10 +4,17 @@
     box-sizing: border-box;
 }
 
+html, body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
 .container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+    position: fixed;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -25,6 +32,7 @@ video {
     right: 0;
     background: rgba(0, 0, 0, 0.7);
     padding: 20px;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
 }
 
 .chat-messages {
@@ -32,11 +40,14 @@ video {
     overflow-y: auto;
     margin-bottom: 10px;
     color: white;
+    -webkit-overflow-scrolling: touch;
 }
 
 .input-container {
     display: flex;
     gap: 10px;
+    position: relative;
+    z-index: 1000;
 }
 
 #userInput {
@@ -44,6 +55,7 @@ video {
     padding: 10px;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
 }
 
 button {
@@ -53,6 +65,8 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 button:hover {
@@ -63,4 +77,14 @@ button:hover {
     display: inline-block;
     vertical-align: top;
     white-space: pre-wrap;
+}
+
+@media screen and (max-height: 450px) {
+    .chat-messages {
+        max-height: 80px;
+    }
+    
+    .chat-container {
+        padding: 10px;
+    }
 } 

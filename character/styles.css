@@ -147,3 +147,39 @@ button:hover {
         padding: 12px 20px;
     }
 }
+
+.suggested-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;  /* 减小间距 */
+    margin-bottom: 10px;
+    transition: opacity 0.3s ease;
+    align-items: flex-start;  /* 左对齐 */
+}
+
+.question-button {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 6px 12px;  /* 减小内边距 */
+    border-radius: 16px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    font-size: 13px;  /* 更小的字体 */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: auto;  /* 根据内容自适应宽度 */
+    max-width: 100%;  /* 最大宽度占满容器 */
+}
+
+.question-button:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateX(2px);  /* 改为横向移动效果 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.suggested-questions.hidden {
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    margin: 0;
+}

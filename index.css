@@ -6,7 +6,7 @@
 
 body {
     font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: #fff;
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB, #E3F2FD);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -15,16 +15,30 @@ body {
 
 .container {
     width: 100%;
-    max-width: 600px;
-    padding: 20px;
+    max-width: 1200px;
+    padding: 40px 20px;
 }
 
 .title {
     text-align: center;
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 40px;
+    font-size: 32px;
+    color: #1A237E;
+    margin-bottom: 50px;
     position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 2px;
+}
+
+.title::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background: #1A237E;
+    border-radius: 2px;
 }
 
 .title::after {
@@ -33,41 +47,44 @@ body {
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 240px;
-    height: 4px;
-    background: #007AFF;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #1A237E, transparent);
     border-radius: 2px;
 }
 
 .character-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 0 20px;
+    gap: 16px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .character-item {
     display: flex;
     align-items: center;
     padding: 20px;
-    background: #fff;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
     text-decoration: none;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
 
 .character-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .avatar {
     width: 60px;
     height: 60px;
-    border-radius: 50%;
+    border-radius: 30px;
     overflow: hidden;
     margin-right: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .avatar img {
@@ -80,20 +97,30 @@ body {
     font-size: 18px;
     color: #333;
     margin-right: auto;
+    font-weight: 500;
 }
 
 .character-action {
     color: #007AFF;
     font-size: 14px;
+    padding: 8px 16px;
+    background: rgba(0, 122, 255, 0.1);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.character-item:hover .character-action {
+    background: rgba(0, 122, 255, 0.15);
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 15px;
+        padding: 20px 15px;
     }
     
-    .character-list {
-        padding: 0 10px;
+    .title {
+        font-size: 24px;
+        margin-bottom: 30px;
     }
     
     .character-item {

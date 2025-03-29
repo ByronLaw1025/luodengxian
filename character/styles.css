@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+video {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.chat-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.chat-messages {
+    max-height: 150px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    color: white;
+    -webkit-overflow-scrolling: touch;
+}
+
+.message {
+    margin: 8px 0;
+    max-width: 85%;
+    display: flex;
+    flex-direction: column;
+}
+
+.message.user {
+    margin-left: auto;
+    align-items: flex-end;
+}
+
+.message-content {
+    padding: 12px 16px;
+    border-radius: 18px;
+    background: rgba(0, 123, 255, 0.9);
+    color: white;
+    font-size: 15px;
+    line-height: 1.4;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message.user .message-content {
+    background: rgba(73, 80, 87, 0.9);
+    border-top-right-radius: 4px;
+}
+
+.message:not(.user) .message-content {
+    border-top-left-radius: 4px;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+}
+
+#userInput {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 24px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    padding: 12px 24px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    font-weight: 500;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+}
+
+.ai-response {
+    display: inline-block;
+    vertical-align: top;
+    white-space: pre-wrap;
+}
+
+@media screen and (max-height: 450px) {
+    .chat-messages {
+        max-height: 80px;
+    }
+    
+    .chat-container {
+        padding: 10px;
+    }
+}
+
+/* 添加响应式布局 */
+@media screen and (max-width: 840px) {
+    .chat-container {
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .chat-container {
+        padding: 10px;
+    }
+    
+    button {
+        padding: 12px 20px;
+    }
+}

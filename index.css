@@ -137,3 +137,18 @@ body {
         font-size: 16px;
     }
 }
+
+.container {
+    min-height: 100vh;
+    padding: 40px 20px; /* 增加顶部内边距 */
+    padding-top: max(40px, env(safe-area-inset-top)); /* 适配安全区域并保持顶部间距 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.title {
+    margin: 0; /* 移除默认边距 */
+}

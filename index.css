@@ -16,7 +16,7 @@ body {
 .container {
     width: 100%;
     max-width: 1200px;
-    padding: 40px 20px;
+    padding: 40px 10px; /* 减小左右内边距 */
 }
 
 .title {
@@ -64,7 +64,7 @@ body {
 .character-item {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 20px 15px; /* 减小左右内边距 */
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     border-radius: 16px;
@@ -115,7 +115,7 @@ body {
 
 @media (max-width: 480px) {
     .container {
-        padding: 20px 15px;
+        padding: 20px 10px; /* 移动端也减小左右内边距 */
     }
     
     .title {
